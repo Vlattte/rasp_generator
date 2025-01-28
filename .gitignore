@@ -1,11 +1,15 @@
-.env
-
-.idea
-*/__pycache__/*
-__pycache__/*
+confing.ini
 *.xlsx
-*.json
 
+.vscode
+.idea
 .idea/*
 
+*/__pycache__/*
+__pycache__/*
+
+*.json
+
+
 sql_scripts/sql_dump.sql
+test_rasp_files/*

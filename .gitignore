@@ -1,0 +1,11 @@
+.env
+
+.idea
+*/__pycache__/*
+__pycache__/*
+*.xlsx
+*.json
+
+.idea/*
+
+sql_scripts/sql_dump.sql

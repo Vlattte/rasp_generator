@@ -63,12 +63,14 @@ class Database:
         """Получить расписание на неделю на семестр и у выбранной группы"""
         query = f"""
         SELECT 
-            r7.disc_id,
+            disc.shorttitle,
+            disc.department_id,
             r7.pair,
             r7.weekday,
             r7.weeksarray
             FROM sc_rasp7 r7
         INNER JOIN sc_rasp7_groups r7_gr ON r7.id = r7_gr.rasp7_id 
+        INNER JOIN sc_disc disc ON disc.id = r7.disc_id
             WHERE r7.semcode = {semcode} and r7_gr.group_id = {group_id};
         """
         return_data = self.send_request(query, is_return=True)

@@ -56,8 +56,9 @@ class RaspGenerator:
         self.create_rasp_title(ws)
         self.fill_day_col(ws=ws, col_num=1, is_left=True)
         groups_rasp = self.get_week_groups_rasp()
-        for g_rasp in groups_rasp:
-            self.fill_group_col(g_rasp)
+        print(groups_rasp)
+        for g_name, g_data in groups_rasp.items():
+            self.fill_group_col(g_name, g_data)
         # self.fill_day_col(ws=ws, col_num=4, is_left=False)
         wb.save("new_rasp.xlsx")
 
@@ -116,17 +117,22 @@ class RaspGenerator:
     def get_week_groups_rasp(self):
         """Получить раписание для всех групп обоих подгрупп на неделю"""
         group_data = self.db_conn.get_groups_data()
-        print(group_data)
         group_rasp = {}
         for group in group_data:
             g_rasp = self.db_conn.get_discs_for_group(self.semcode, group["id"])
             group_rasp[group["title"]] = g_rasp
         return group_rasp
 
-    def fill_group_col(self, group_rasp):
+    def fill_group_col(self, g_name, g_data):
         """Заполняем расписание для группы на неделю"""
         # если у выбранной группы нет пар в выбранном семестре
-        if group_rasp is None:
+        if g_data is None:
             return
-        
-        
+
+        print(g_name)
+        for lesson in g_data:
+            print(lesson["shorttitle"])
+            print(lesson["department_id"])
+            print(lesson["pair"])
+            print(lesson["weekday"])
+            print(lesson["weeksarray"])
